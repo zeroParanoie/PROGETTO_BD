@@ -5,5 +5,5 @@ CREATE event IF NOT EXISTS spedizione_ordini
 		on completion preserve
 	comment 'shipping orders'
     do
-		UPDATE ordine SET stato = 'in consegna';
+		UPDATE ordine SET stato = 'in consegna' WHERE stato = 'finalizzato';
 
