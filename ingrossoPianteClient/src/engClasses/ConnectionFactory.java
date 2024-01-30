@@ -11,7 +11,7 @@ public class ConnectionFactory {
     private ConnectionFactory() {}
 
     static {
-        try (InputStream input = new FileInputStream("src/db.properties")) {
+        try (InputStream input = new FileInputStream("resources/db.properties")) {
             Properties properties = new Properties();
             properties.load(input);
 

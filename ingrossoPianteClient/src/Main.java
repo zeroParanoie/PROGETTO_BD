@@ -8,10 +8,7 @@ import java.sql.SQLException;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) throws SQLException {
-        //ApplicationController applicationController = new ApplicationController();
-        //applicationController.start();
-
-        Connection conn = ConnectionFactory.getConnection();
+            ApplicationController applicationController = new ApplicationController();
+            applicationController.start();
         }
     }
-}

@@ -1,6 +1,7 @@
 package view;
 
 import model.Credentials;
+import model.role;
 
 import java.io.*;
 
