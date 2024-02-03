@@ -17,9 +17,9 @@ public class ApplicationController implements Controller{
         }
 
         switch (credentials.getR()) {
-            case FORNITORE -> new FornitoreController();
-            case MAGAZZINO -> new MagazzinoController();
-            case REFERENTE -> new ReferenteController();
+            case FORNITORE -> new FornitoreController().start();
+            case MAGAZZINO -> new MagazzinoController().start();
+            case REFERENTE -> new ReferenteController().start();
             default -> throw new RuntimeException("Credentials are wrong!");
         }
     }

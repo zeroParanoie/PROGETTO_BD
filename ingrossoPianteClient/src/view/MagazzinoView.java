@@ -1,15 +1,24 @@
 package view;
 
+import engClasses.DAO.MagazzinoDAO;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class MagazzinoView {
+    MagazzinoDAO magazzinoDAO = new MagazzinoDAO();
+
     public static int showMenu() throws IOException {
         System.out.println("Benvenuto nel sistema di gestione del magazzino di Verde S.r.l.");
         System.out.println("Scegliere una delle seguenti azioni: ");
-        System.out.println("1. Approva una fornitura;");
-        System.out.println("2. Modifica la tua sede;");
-        System.out.println("3. Registra nuovo utente;");
+        System.out.println("1. Aggiungi un fornitore;");
+        System.out.println("2. Modifica un prezzo;");
+        System.out.println("3. Trova fornitori;");
+        System.out.println("4. Trova informazioni su una azienda fornitrice;");
+        System.out.println("5. Trova informazioni su un ordine;");
+        System.out.println("6. Trova informazioni su una rivendita;");
+        System.out.println("7. Trova ultimo prezzo inserito;");
+        System.out.println("8. Registra nuovo utente;");
 
         Scanner input = new Scanner(System.in);
         int choice = 0;
