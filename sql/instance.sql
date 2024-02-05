@@ -495,7 +495,7 @@ DELIMITER $$
 USE `ingrossoPiante`$$
 CREATE PROCEDURE `trova_info_fornitrice` (in var_CF VARCHAR(10), out var_sede VARCHAR(45), out var_nome VARCHAR(45), out var_cognome VARCHAR(45))
 BEGIN
-	select sede_f from fornitrice where Codice_fornitore = var_CF into var_sede;
+	select sede_f from fornitrice where Codice_fornitore = var_CF into var_sede UNION
     select nomeFornitore, cognomeFornitore from fornitore where Cfornitore = var_CF into var_nome, var_cognome;
 END$$
 
@@ -564,7 +564,7 @@ DROP procedure IF EXISTS `ingrossoPiante`.`trova_ultimo_prezzo`;
 
 DELIMITER $$
 USE `ingrossoPiante`$$
-CREATE PROCEDURE `trova_ultimo_prezzo` (in var_nomeL VARCHAR(45))
+CREATE PROCEDURE `trova_ultimo_prezzo` (in var_nomeL VARCHAR(45), out costo_out FLOAT)
 BEGIN
 	select costo from prezzo where nome_latino = var_nomeL;
 END$$
