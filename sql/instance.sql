@@ -70,7 +70,7 @@ DROP TABLE IF EXISTS `ingrossoPiante`.`effettua` ;
 
 CREATE TABLE IF NOT EXISTS `ingrossoPiante`.`effettua` (
   `IVAeff` VARCHAR(11) NOT NULL,
-  `codOrdineEff` VARCHAR(10) NOT NULL,
+  `codOrdineEff` INT NOT NULL,
   PRIMARY KEY (`IVAeff`, `codOrdineEff`),
   INDEX `fkOrdine_idx` (`codOrdineEff` ASC) VISIBLE,
   CONSTRAINT `fkRivendita`
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `ingrossoPiante`.`effettua` (
     REFERENCES `ingrossoPiante`.`rivendita` (`IVA`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fkOrdine`
+  CONSTRAINT `fkOrdine1`
     FOREIGN KEY (`codOrdineEff`)
     REFERENCES `ingrossoPiante`.`ordine` (`Codice_ordine`)
     ON DELETE NO ACTION
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `ingrossoPiante`.`fornitore` (
   `CF` VARCHAR(16) NOT NULL,
   `nomeFornitore` VARCHAR(45) NOT NULL,
   `cognomeFornitore` VARCHAR(45) NOT NULL,
-  `Cfornitore` VARCHAR(10) NOT NULL,
+  `Cfornitore` INT NOT NULL,
   `sedePos` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`CF`),
   UNIQUE INDEX `Cfornitore_idx` (`Cfornitore` ASC) VISIBLE,
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `ingrossoPiante`.`indirizzo` (
   `spedizione` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`fatturazione`, `IVArivendita`),
   INDEX `fkRivendita_idx` (`IVArivendita` ASC) VISIBLE,
-  CONSTRAINT `fkRivendita`
+  CONSTRAINT `fkRivendita1`
     FOREIGN KEY (`IVArivendita`)
     REFERENCES `ingrossoPiante`.`rivendita` (`IVA`)
     ON DELETE NO ACTION
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `ingrossoPiante`.`pianta` (
   `quantita` INT NOT NULL,
   PRIMARY KEY (`codice`, `nomeLatinoSpeciePianta`),
   INDEX `fkSpecie_idx` (`nomeLatinoSpeciePianta` ASC) VISIBLE,
-  CONSTRAINT `fkSpecie`
+  CONSTRAINT `fkSpecie1`
     FOREIGN KEY (`nomeLatinoSpeciePianta`)
     REFERENCES `ingrossoPiante`.`specie` (`nome_latino`)
     ON DELETE NO ACTION
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `ingrossoPiante`.`prezzo` (
   `nomeLatinoSpeciePrezzo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`costo`, `nomeLatinoSpeciePrezzo`),
   INDEX `fkSpecie_idx` (`nomeLatinoSpeciePrezzo` ASC) VISIBLE,
-  CONSTRAINT `fkSpecie`
+  CONSTRAINT `fkSpecie2`
     FOREIGN KEY (`nomeLatinoSpeciePrezzo`)
     REFERENCES `ingrossoPiante`.`specie` (`nome_latino`)
     ON DELETE NO ACTION
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `ingrossoPiante`.`referente` (
   `nomeReferente` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cognomeReferente`, `IVArivenditaReferente`),
   INDEX `fkRivendita_idx` (`IVArivenditaReferente` ASC) VISIBLE,
-  CONSTRAINT `fkRivendita`
+  CONSTRAINT `fkRivendita2`
     FOREIGN KEY (`IVArivenditaReferente`)
     REFERENCES `ingrossoPiante`.`rivendita` (`IVA`)
     ON DELETE NO ACTION
@@ -301,7 +301,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ingrossoPiante`.`tipo` ;
 
 CREATE TABLE IF NOT EXISTS `ingrossoPiante`.`tipo` (
-  `tipo_a` VARCHAR(45) NOT NULL,
+  `tipo_a` ENUM('fio', 'ext', 'eso') NOT NULL,
   PRIMARY KEY (`tipo_a`))
 ENGINE = InnoDB;
 
